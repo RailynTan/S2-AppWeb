@@ -2,7 +2,7 @@ import '../App.css'
 import WaldoXd from '../assets/WaldoXd.png'
 import { useNavigate } from 'react-router-dom'
 
-function Login(){
+function Details(){
     const navigate = useNavigate();
     const irDashboard = () => {
         navigate('/dashboard')
@@ -23,4 +23,4 @@ function Login(){
     )
 }
 
-export default Login
+export default Details
