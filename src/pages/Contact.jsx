@@ -1,5 +1,6 @@
 import '../App.css'
 import Walter from '../assets/Walter.jpg'
+import ButtonNav from '../components/ButtonNav';
 import { useNavigate } from 'react-router-dom'
 
 function Contact(){
@@ -13,9 +14,7 @@ function Contact(){
         <section id='center'>
             <div className='hero'>
                 <img src={Walter} className='base' width="400" height="400" alt='' />
-                <button onClick={irDashboard}>
-                    Return
-                </button>
+                <ButtonNav ruta={'/dashboard'} texto={'return'} />
             </div>
         </section>
     )

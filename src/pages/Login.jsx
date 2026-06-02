@@ -1,12 +1,10 @@
 import '../App.css'
 import WaldoBros from '../assets/WaldoBros.png'
-import { useNavigate } from 'react-router-dom'
+import ButtonNav from '../components/ButtonNav';
+
 
 function Login(){
-    const navigate = useNavigate();
-    const irDashboard = () => {
-        navigate('/dashboard')
-    }
+
 
     return(
 
@@ -14,9 +12,7 @@ function Login(){
             <div className='hero'>
                 <h1>Lore ipsum</h1>
                 <img src={WaldoBros} className='base' width="170" height="179" alt='' />
-                <button onClick={irDashboard}>
-                    Dashboard
-                </button>
+                <ButtonNav ruta={'/dashboard'} texto={'dashboard'} />
             </div>
         </section>
     )

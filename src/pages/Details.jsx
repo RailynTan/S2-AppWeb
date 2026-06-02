@@ -1,12 +1,8 @@
 import '../App.css'
 import WaldoXd from '../assets/WaldoXd.png'
-import { useNavigate } from 'react-router-dom'
+import ButtonNav from '../components/ButtonNav';
 
 function Details(){
-    const navigate = useNavigate();
-    const irDashboard = () => {
-        navigate('/dashboard')
-    }
 
     return(
 
@@ -14,9 +10,7 @@ function Details(){
             <div className='hero'>
                 <h1>Momento</h1>
                 <img src={WaldoXd} className='base' width="170" height="179" alt='' />
-                <button onClick={irDashboard}>
-                    Back
-                </button>
+                <ButtonNav ruta={'/dashboard'} texto={'return'} />
                 <h2>Momento xD</h2>
             </div>
         </section>
