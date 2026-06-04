@@ -19,4 +19,4 @@ function Contact(){
     )
 }
 
-export default Contact //dd
+export default Contact
