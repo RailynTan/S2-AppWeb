@@ -7,7 +7,7 @@ import '../styles/Contact.scss';
 const Contact = () => {
   // Requisito 4.2: useEffect para cambiar el título de la página
   useEffect(() => {
-    document.title = "Soporte VCM | Contacto";
+    document.title = "s2 | Contacto";
   }, []);
 
   // Requisito 4.2: useState para manejar el formulario
