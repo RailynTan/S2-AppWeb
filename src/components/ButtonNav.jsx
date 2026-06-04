@@ -1,17 +1,12 @@
-import '../App.css'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import '../App.scss'; 
 
-function ButtonNav({ ruta, texto}){
-
-    const navigate = useNavigate();
-
-    return(
-        <button className='Navbutton' style={{backgroundColor: '#3534BF'}}
-        onClick={() => navigate(ruta)}>
-            {texto}
-        </button>
-
-    )
+function ButtonNav({ ruta, texto }) {
+  return (
+    <Link to={ruta} className="Navbutton">
+      {texto}
+    </Link>
+  );
 }
 
-export default ButtonNav
+export default ButtonNav;
