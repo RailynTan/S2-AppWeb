@@ -1,6 +1,7 @@
 import '../App.css'
 import Walter from '../assets/Walter.jpg'
 import ButtonNav from '../components/ButtonNav';
+import { useNavigate } from 'react-router-dom';
 
 function Contact(){
     const navigate = useNavigate();

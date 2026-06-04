@@ -1,22 +1,57 @@
-import '../App.css'
-import TrumpWich from '../assets/TrumpWich.png'
-import ButtonNav from '../components/ButtonNav';
+import { useState } from 'react';
+import Paso1Rut from '../components/Checklist/Paso1Rut';
+import Paso2Boleta from '../components/Checklist/Paso2Boleta';
+import Paso3Respaldo from '../components/Checklist/Paso3Respaldo';
+import '../styles/Checklist.scss';
 
+const Checklist = () => {
+  const [pasoActual, setPasoActual] = useState(1);
+  const [datosRetiro, setDatosRetiro] = useState({
+    rut: '',
+    clienteNombre: '',
+    boletaId: '',
+    correoRespaldo: '',
+    esTercero: false,
+    fotoCarnet: null
+  });
+  const avanzarPaso = () => setPasoActual((prev) => prev + 1);
+  const retrocederPaso = () => setPasoActual((prev) => prev - 1);
 
-function Checklist(){
+  return (
+    <main className="checklist-page-wrapper">
+      <header className="checklist-header">
+        <h1>Control de Retiros</h1>
+        <p>Paso {pasoActual} de 3</p>
+      </header>
 
-    return(
+      <section className="checklist-content-card">
+        {pasoActual === 1 && (
+          <Paso1Rut 
+            datos={datosRetiro} 
+            setDatos={setDatosRetiro} 
+            alCompletar={avanzarPaso} 
+          />
+        )}
 
-        <section id='center'>
-            <div className='hero'>
-                <h1>Trumpwich</h1>
-                <img src={TrumpWich} className='base' width="170" height="179" alt='' />
-                <ButtonNav ruta={'/details'} texto={'confirmar'} />
-                <h2>Trumpwich square</h2>
-                <ButtonNav ruta={'/dashboard'} texto={'Cancel'} />
-            </div>
-        </section>
-    )
-}
+        {pasoActual === 2 && (
+          <Paso2Boleta 
+            datos={datosRetiro} 
+            setDatos={setDatosRetiro} 
+            alCompletar={avanzarPaso} 
+            volver={retrocederPaso}
+          />
+        )}
 
-export default Checklist
+        {pasoActual === 3 && (
+          <Paso3Respaldo 
+            datos={datosRetiro} 
+            setDatos={setDatosRetiro} 
+            volver={retrocederPaso}
+          />
+        )}
+      </section>
+    </main>
+  );
+};
+
+export default Checklist;
