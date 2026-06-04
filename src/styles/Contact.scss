@@ -1,0 +1,164 @@
+/* src/pages/Contact.scss */
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.pagina-contacto {
+  background-color: $color-fondo;
+  color: $color-texto;
+  
+  /* Redujimos el padding de 2rem a 1rem arriba/abajo, manteniendo 2rem a los lados */
+  padding: 1rem 2rem; 
+  font-family: $fuente-base;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+
+  .cabecera-contacto {
+    margin-bottom: 1rem; /* Reducido de 2rem a 1rem */
+    
+    .btn-volver {
+      @include boton-base;
+      background-color: $color-gris-claro;
+      color: $color-texto;
+      padding: 8px 16px; /* Botón un poco más pequeño */
+    }
+  }
+
+  .soporte-urgente {
+    text-align: center;
+    margin-bottom: 1rem; /* Reducido de 2rem a 1rem */
+
+    h2 {
+      margin: 0; /* Quitamos el margen del título para ahorrar espacio */
+      font-size: 1.2rem;
+    }
+
+    .botones-urgencia {
+      @include flex-centro;
+      gap: 15px; /* Reducido de 20px a 15px */
+      margin-top: 10px;
+
+      button {
+        @include boton-base;
+        padding: 10px 20px; /* Reducido */
+      }
+      
+      .btn-llamar { background-color: $color-btn-llamar; } 
+      .btn-chat { background-color: $color-info-soporte; }   
+    }
+  }
+
+  .formulario-soporte {
+    @include tarjeta-base;
+    padding: 1.5rem; /* Reducido de 2rem a 1.5rem */
+
+    .grid-formulario {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 1.5rem; /* Reducido de 2rem a 1.5rem */
+
+      @media (max-width: 1023px) { grid-template-columns: 1fr 1fr; }
+      @media (max-width: 767px) { grid-template-columns: 1fr; }
+
+      fieldset {
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        legend {
+          font-weight: bold;
+          margin-bottom: 10px; /* Reducido de 15px a 10px */
+          font-size: 1rem;
+        }
+
+        .campo {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 1rem; /* Reducido de 1.5rem a 1rem */
+
+          label {
+            margin-bottom: 5px; /* Reducido de 8px a 5px */
+            font-size: 0.85rem;
+          }
+
+          input, select, textarea {
+            padding: 8px; /* Reducido de 10px a 8px */
+            border: 1px solid $color-borde;
+            border-radius: $radio-borde;
+            font-family: inherit;
+          }
+
+          input[readOnly] { background-color: $color-info; } 
+          textarea, select { background-color: $color-fondo-input; } 
+        }
+      }
+
+      .columna-urgencia .opciones-urgencia {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Reducido de 15px a 10px */
+
+        .radio-btn {
+          display: block;
+          padding: 10px; /* Reducido de 12px a 10px */
+          border: 1px solid $color-texto;
+          border-radius: $radio-borde;
+          text-align: center;
+          cursor: pointer;
+          font-weight: bold;
+          transition: opacity 0.2s;
+
+          input { display: none; }
+          &:hover { opacity: 0.8; }
+          &:nth-child(1) { background-color: $color-consulta; } 
+          &:nth-child(2) { background-color: $color-parcial; } 
+          &:nth-child(3) { background-color: $color-urgente; } 
+        }
+      }
+
+      .footer-formulario {
+        grid-column: 1 / -1; 
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end; /* Alineamos los elementos abajo */
+        margin-top: 0.5rem; /* Drásticamente reducido para pegar la tabla arriba */
+        gap: 2rem;
+
+        @media (max-width: 767px) {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .historial-reportes {
+          flex: 1;
+          border: 1px solid $color-borde;
+          padding: 1rem;
+          background-color: $color-gris-claro;
+          
+          h3 { margin-top: 0; margin-bottom: 10px; font-size: 0.95rem; }
+
+          table {
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+            font-size: 0.9rem; /* Fuente de tabla más pequeña */
+
+            th, td {
+              padding: 6px; /* Celdas más compactas */
+              border-bottom: 1px solid $color-borde;
+            }
+          }
+        }
+
+        .btn-enviar {
+          @include boton-base;
+          background-color: $color-exito; 
+          padding: 12px 30px; /* Reducido ligeramente */
+          font-size: 1rem;
+
+          &:hover { background-color: $color-exito-hover; }
+        }
+      }
+    }
+  }
+}

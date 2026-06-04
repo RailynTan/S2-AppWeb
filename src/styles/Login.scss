@@ -1,0 +1,100 @@
+$color-bg-dark: #0f4c81;        
+$color-card-bg: #0b3c66;     
+$color-text-light: #ffffff;     
+$color-input-crema: #fff0c7;    
+$color-btn-green: #abf1c2;      
+$color-border-light: #527e9f;   
+
+.login-container-full {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-bg-dark;
+  min-height: 100vh;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+
+  .login-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px; 
+    padding: 20px;
+
+    .login-title {
+      color: $color-text-light;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-weight: normal;
+    }
+
+    .login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+
+      .inputs-box {
+        width: 100%;
+        background-color: transparent;
+        border: 2px solid $color-text-light; 
+        padding: 30px 20px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        box-sizing: border-box;
+
+        .input-group {
+          width: 100%;
+
+          input {
+            width: 100%;
+            background-color: $color-input-crema;
+            color: #000000;
+            border: 2px solid #000000; 
+            padding: 12px 15px;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            outline: none;
+            box-sizing: border-box;
+            font-family: inherit;
+
+            &::placeholder {
+              color: #555555;
+            }
+
+            &:focus {
+              border-color: $color-border-light;
+              box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+            }
+          }
+        }
+      }
+      .btn-access {
+        width: 80%;
+        background-color: $color-btn-green;
+        color: #000000;
+        border: 2px solid #000000;
+        padding: 14px;
+        font-size: 1.2rem;
+        font-weight: normal;
+        border-radius: 20px; 
+        cursor: pointer;
+        transition: transform 0.1s ease, background-color 0.2s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+          background-color: darken($color-btn-green, 8%);
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+      }
+    }
+  }
+}

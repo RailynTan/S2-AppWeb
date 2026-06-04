@@ -1,0 +1,52 @@
+/* =======================================================
+   1. VARIABLES GLOBALES (Evidencia SCSS Obligatoria)
+   ======================================================= */
+$color-primario: #3534bf;       /* Azul oscuro de tu botón */
+$color-header: #6893d4;         /* Azul claro de tu header */
+$color-blanco: #ffffff;
+$sombra-suave: 0 4px 10px rgba(37, 99, 235, 0.20);
+
+/* =======================================================
+   2. ESTILOS DE COMPONENTES GLOBALES
+   ======================================================= */
+
+/* --- Componente Header --- */
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $color-header; /* Uso de variable */
+  padding: 15px 7%;
+}
+
+/* --- Componente Logo --- */
+.logo {
+  width: 160px;
+  cursor: pointer;
+}
+
+/* --- Componente ButtonNav --- */
+.Navbutton {
+  background-color: $color-primario; 
+  color: $color-blanco;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  
+  /* Importante: Como ahora usamos <Link>, quitamos el subrayado típico de las etiquetas <a> */
+  text-decoration: none; 
+  display: inline-block; 
+  
+  transition: all 0.25s ease;
+  box-shadow: $sombra-suave; 
+
+  /* Evidencia de anidamiento y función SCSS (Evaluación de pauta) */
+  &:hover {
+    background-color: darken($color-primario, 10%); /* Oscurece el botón al pasar el mouse */
+    transform: translateY(-2px); /* Pequeño efecto visual de elevación */
+  }
+}

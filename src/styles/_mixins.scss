@@ -1,0 +1,35 @@
+/* =======================================================
+   MIXINS DE DISEÑO (Evidencia de funciones SCSS)
+   ======================================================= */
+
+// 1. Mixin para centrar contenido rápidamente con Flexbox
+@mixin flex-centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 2. Mixin para la estructura base de las tarjetas o secciones
+@mixin tarjeta-base {
+  border: 1px solid $color-borde;
+  border-radius: $radio-borde;
+  padding: $espaciado-base;
+  background-color: $color-fondo;
+}
+
+// 3. Mixin para resetear botones y darles un estilo base
+@mixin boton-base {
+  padding: 12px 24px;
+  border: 1px solid $color-texto;
+  border-radius: $radio-borde;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
