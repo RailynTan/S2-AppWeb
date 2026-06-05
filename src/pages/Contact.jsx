@@ -110,18 +110,20 @@ const Contact = () => {
               <label htmlFor="categoria">Categoría del problema</label>
               <select id="categoria" name="categoria" value={formData.categoria} onChange={handleChange}>
                 <option value="">Seleccione una categoría...</option>
-                <option value="hardware">Falla de Hardware</option>
-                <option value="software">Falla de Software</option>
-                <option value="red">Problemas de Red</option>
+                <option value="hardware">Falla Física o Daño de Equipo</option>
+                <option value="software">Problema de Software o Configuración</option>
+                <option value="solicitud">Solicitud de Nuevo Equipo/Accesorio</option>
+                <option value="extravio">Reporte de Robo o Extravío</option>
+                <option value="plataforma">Error en la Plataforma</option>
               </select>
             </div>
             <div className="campo">
               <label htmlFor="descripcion">Descripción del problema</label>
-              <textarea 
-                id="descripcion" 
-                name="descripcion" 
-                rows="3" 
-                value={formData.descripcion} 
+              <textarea
+                id="descripcion"
+                name="descripcion"
+                rows="3"
+                value={formData.descripcion}
                 onChange={handleChange}
                 placeholder="Describa el problema aquí..."
               ></textarea>
