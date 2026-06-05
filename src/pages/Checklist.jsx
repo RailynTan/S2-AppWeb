@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Paso1Rut from '../components/Checklist/Paso1Rut';
 import Paso2Boleta from '../components/Checklist/Paso2Boleta';
 import Paso3Respaldo from '../components/Checklist/Paso3Respaldo';
 import '../styles/Checklist.scss';
 
 const Checklist = () => {
+  useEffect(() => {
+      document.title = "s2 | Checklist";
+    }, []);
+  
   const [pasoActual, setPasoActual] = useState(1);
   const [datosRetiro, setDatosRetiro] = useState({
     rut: '',

@@ -1,8 +1,13 @@
 import '../App.css'
+import { useState, useEffect } from 'react';
 import ButtonNav from '../components/ButtonNav';
 import WalDog from '../assets/WalDog.png'
 
 function Dashboard(){
+
+    useEffect(() => {
+        document.title = "s2 | Dashboard";
+    }, []);
 
     return(
 

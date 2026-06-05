@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Contact.scss'; 
 
 const Contact = () => {
-  // Requisito 4.2: useEffect para cambiar el título de la página
+  
   useEffect(() => {
     document.title = "s2 | Contacto";
   }, []);
@@ -53,15 +53,11 @@ const Contact = () => {
     });
   };
 
-  // ==========================================
-  // PASO A: Arreglo de datos estáticos para el historial
-  // Requisito: Datos hardcodeados (estáticos)
-  // ==========================================
   const historialEstatico = [
-    { id: 1, fecha: 'Hoy 10:00', categoria: 'Red', estado: 'Resuelto' },
-    { id: 2, fecha: 'Ayer 15:30', categoria: 'Hardware', estado: 'En progreso' },
-    { id: 3, fecha: 'Lunes 09:15', categoria: 'Software', estado: 'Pendiente' },
-    { id: 4, fecha: 'Viernes 16:45', categoria: 'Red', estado: 'Resuelto' }
+    { id: 1, fecha: 'Hoy 10:00', categoria: 'Falla Física o Daño de Equipo', estado: 'Resuelto' },
+    { id: 2, fecha: 'Ayer 15:30', categoria: 'Error en la Plataforma', estado: 'En progreso' },
+    { id: 3, fecha: 'Lunes 09:15', categoria: 'Solicitud de Nuevo Equipo/Accesorio', estado: 'Pendiente' },
+    { id: 4, fecha: 'Viernes 16:45', categoria: 'Problema de Software o Configuración', estado: 'Resuelto' }
   ];
 
   return (

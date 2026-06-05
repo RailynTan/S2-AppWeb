@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.scss'; 
 
 function Login() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "s2 | Login";
+  }, []);
   
   const [credentials, setCredentials] = useState({
     usuario: '',

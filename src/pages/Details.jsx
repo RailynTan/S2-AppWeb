@@ -1,7 +1,13 @@
+import { useState, useEffect } from 'react';
 import ButtonNav from '../components/ButtonNav';
 import '../styles/Details.scss'; 
 
 const Details = () => {
+  
+  useEffect(() => {
+      document.title = "s2 | Detalles";
+    }, []);
+  
   const detalleRetiro = {
     estadoGeneral: 'Retirado parcialmente', 
     infoBasica: {
