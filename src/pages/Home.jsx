@@ -13,7 +13,6 @@ function Home(){
     return(
         <div className='hero'>
         <Header ruta={"/login"} texto={"login"} />
-        <img src={Peru} className='base' width="170" height="179" alt='' />
         </div>
 
     )
