@@ -12,7 +12,6 @@ function Login() {
 
   const [errorMensaje, setErrorMensaje] = useState('');
 
-  // CORREGIDO: Sin errores de tipeo para que no tire pantalla en blanco
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({
@@ -39,7 +38,6 @@ function Login() {
       <div className="login-card">
         <h1 className="login-title">Login</h1>
         
-        {/* Tu mensaje del trabajo solemne intacto */}
         <p className="aviso-solemne-texto">
           * El usuario y contraseña están limitados a uno solo debido a que es un trabajo solemne.
         </p>
@@ -69,7 +67,6 @@ function Login() {
             </div>
           </div>
 
-          {/* Mensaje de error dinámico en rojo */}
           {errorMensaje && (
             <div className="login-error-message">
               <span>⚠ {errorMensaje}</span>

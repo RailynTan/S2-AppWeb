@@ -1,4 +1,3 @@
-// src/pages/Contact.jsx
 import { useState, useEffect } from 'react';
 import Mensaje from '../components/Mensaje';
 import ButtonNav from '../components/ButtonNav';
@@ -10,8 +9,6 @@ const Contact = () => {
   useEffect(() => {
     document.title = "s2 | Contacto";
   }, []);
-
-  // Requisito 4.2: useState para manejar el formulario
   const [formData, setFormData] = useState({
     operador: 'Juan Pérez', 
     sede: 'Sede Central',
@@ -31,7 +28,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validación requerida para lanzar el Mensaje
     if (formData.categoria === '' || formData.descripcion.trim() === '') {
       setMensajeData({
         tipo: 'error',
@@ -62,7 +58,6 @@ const Contact = () => {
 
   return (
     <main className="pagina-contacto">
-      {/* Botón de navegación implementado en la cabecera */}
       <div className="cabecera-contacto">
         <ButtonNav 
           ruta="/dashboard" 
@@ -155,9 +150,6 @@ const Contact = () => {
                     <th>Estado</th>
                   </tr>
                 </thead>
-                {/* ========================================== */}
-                {/* PASO B: Renderizado dinámico de la tabla */}
-                {/* ========================================== */}
                 <tbody>
                   {historialEstatico.map((reporte) => (
                     <tr key={reporte.id}>

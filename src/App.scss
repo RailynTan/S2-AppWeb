@@ -1,16 +1,8 @@
-/* src/App.scss */
-
-/* =======================================================
-   VARIABLES (Temporales en este archivo)
-   ======================================================= */
 $color-primario: #3534bf;       
 $color-header: #6893d4;         
 $color-blanco: #ffffff;
 $sombra-suave: 0 4px 10px rgba(37, 99, 235, 0.20);
 
-/* =======================================================
-   COMPONENTES GLOBALES
-   ======================================================= */
 .header {
   width: 100%;
   display: flex;
@@ -18,7 +10,7 @@ $sombra-suave: 0 4px 10px rgba(37, 99, 235, 0.20);
   justify-content: space-between;
   background: $color-header; 
   padding: 15px 7%;
-  box-sizing: border-box; /* Previene que el padding desborde la pantalla */
+  box-sizing: border-box;
 }
 
 .logo {

@@ -10,7 +10,7 @@ function Dashboard() {
     
     const pedidos = [
         { id: "SKU-99812", producto: "Monitor 24\"", cantidad: 1, cliente: "Carlos Mendoza", estado: "entregado" },
-        { id: "SKU-99813", producto: "Teclado Mecánico", cantidad: 1, cliente: "Ana Silva", estado: "rechazado" }, // Simula el "Sin stock" o "Dañado"
+        { id: "SKU-99813", producto: "Teclado Mecánico", cantidad: 1, cliente: "Ana Silva", estado: "rechazado" },
         { id: "SKU-99814", producto: "Mouse Inalámbrico", cantidad: 2, cliente: "Diego Muñoz", estado: "entregado" },
         { id: "SKU-99815", producto: "Cable HDMI 2m", cantidad: 4, cliente: "María Cuevas", estado: "pendiente" },
         { id: "SKU-99816", producto: "Audífonos Gamer", cantidad: 1, cliente: "Juan Pérez", estado: "entregado" },
@@ -20,7 +20,6 @@ function Dashboard() {
         <section className="details-page-wrapper">
             <div className="details-content-card">
                 
-                {/* ENCABEZADO */}
                 <div className="dashboard-header">
                     <div className="header-left">
                         <ButtonNav ruta={'/'} texto={'Logout'} className="btn-logout" />
@@ -29,7 +28,6 @@ function Dashboard() {
                     <ButtonNav ruta={'/contact'} texto={'Contacto/soporte'} className="btn-soporte" />
                 </div>
 
-                {/* CONTENEDORES DE ESTADO (BANNERS) */}
                 <div className="indicadores-container">
                     <div className="banner-estado banner-verde">
                         <label>Pedidos entregados hoy</label>
@@ -45,12 +43,10 @@ function Dashboard() {
                     </div>
                 </div>
 
-                {/* BOTÓN CENTRAL REGISTRAR */}
                 <div className="btn-registrar-container">
                     <ButtonNav ruta={'/checklist'} texto={'Registrar'} className="btn-registrar" />
                 </div>
 
-                {/* TABLA DE PRODUCTOS */}
                 <div className="columna-detalles">
                     <table className="tabla-limpia">
                         <thead>
@@ -64,7 +60,6 @@ function Dashboard() {
                         </thead>
                         <tbody>
                             {pedidos.map((pedido, index) => {
-                                // Asignar color de fondo de la fila según el estado del dashboard original
                                 let filaClase = "fila-verde";
                                 if (pedido.estado === "pendiente") filaClase = "fila-amarilla";
                                 if (pedido.estado === "rechazado") filaClase = "fila-roja";
@@ -75,7 +70,6 @@ function Dashboard() {
                                         <td>{pedido.producto}</td>
                                         <td>{pedido.cantidad}</td>
                                         <td>{pedido.cliente}</td>
-                                        {/* El botón ahora dice "DETALLES" de forma fija */}
                                         <td>
                                             <div className="celda-boton-detalle">
                                                 <ButtonNav 
