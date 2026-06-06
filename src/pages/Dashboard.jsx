@@ -1,7 +1,13 @@
-import '../App.css'; 
+import '../App.css';
+import { useState, useEffect } from 'react';
 import ButtonNav from '../components/ButtonNav';
 
 function Dashboard() {
+
+    useEffect(() => {
+        document.title = "s2 | Dashboard";
+    }, []);
+    
     const pedidos = [
         { id: "SKU-99812", producto: "Monitor 24\"", cantidad: 1, cliente: "Carlos Mendoza", estado: "entregado" },
         { id: "SKU-99813", producto: "Teclado Mecánico", cantidad: 1, cliente: "Ana Silva", estado: "rechazado" }, // Simula el "Sin stock" o "Dañado"
