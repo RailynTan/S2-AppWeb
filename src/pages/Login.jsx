@@ -1,13 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.scss'; 
 
 function Login() {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    document.title = "s2 | Login";
-  }, []);
   
   const [credentials, setCredentials] = useState({
     usuario: '',
@@ -16,6 +12,7 @@ function Login() {
 
   const [errorMensaje, setErrorMensaje] = useState('');
 
+  // CORREGIDO: Sin errores de tipeo para que no tire pantalla en blanco
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({
@@ -33,7 +30,6 @@ function Login() {
       console.log("Acceso concedido. Redirigiendo...");
       navigate('/dashboard'); 
     } else {
-      // Mensaje genérico por seguridad (así no saben cuál de los dos falló)
       setErrorMensaje('RUT o contraseña incorrectos. Intente nuevamente.');
     }
   };
@@ -42,6 +38,11 @@ function Login() {
     <section className="login-container-full">
       <div className="login-card">
         <h1 className="login-title">Login</h1>
+        
+        {/* Tu mensaje del trabajo solemne intacto */}
+        <p className="aviso-solemne-texto">
+          * El usuario y contraseña están limitados a uno solo debido a que es un trabajo solemne.
+        </p>
         
         <form onSubmit={handleSubmit} className="login-form">
           <div className="inputs-box">
@@ -68,7 +69,7 @@ function Login() {
             </div>
           </div>
 
-          {/* Mensaje de error dinámico */}
+          {/* Mensaje de error dinámico en rojo */}
           {errorMensaje && (
             <div className="login-error-message">
               <span>⚠ {errorMensaje}</span>
