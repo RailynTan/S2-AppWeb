@@ -1,175 +1,95 @@
-import { useState, useEffect } from 'react';
-import Mensaje from '../components/Mensaje';
+import '../App.css'; 
 import ButtonNav from '../components/ButtonNav';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Contact.scss'; 
 
-const Contact = () => {
+function Dashboard() {
+    // DATOS REALES COHERENTES CON LA PÁGINA DE DETALLES (image_3a2421.png)
+    const pedidos = [
+        { id: "SKU-99812", producto: "Monitor 24\"", cantidad: 1, cliente: "Carlos Mendoza", estado: "entregado" },
+        { id: "SKU-99813", producto: "Teclado Mecánico", cantidad: 1, cliente: "Ana Silva", estado: "rechazado" }, // Simula el "Sin stock" o "Dañado"
+        { id: "SKU-99814", producto: "Mouse Inalámbrico", cantidad: 2, cliente: "Diego Muñoz", estado: "entregado" },
+        { id: "SKU-99815", producto: "Cable HDMI 2m", cantidad: 4, cliente: "María Cuevas", estado: "pendiente" },
+        { id: "SKU-99816", producto: "Audífonos Gamer", cantidad: 1, cliente: "Juan Pérez", estado: "entregado" },
+    ];
 
-  useEffect(() => {
-    document.title = "s2 | Contacto";
-  }, []);
+    return (
+        <section className="details-page-wrapper">
+            <div className="details-content-card">
+                
+                {/* ENCABEZADO */}
+                <div className="dashboard-header">
+                    <div className="header-left">
+                        <ButtonNav ruta={'/'} texto={'Logout'} className="btn-logout" />
+                        <h1 className="titulo-seccion">Retiros de hoy</h1>
+                    </div>
+                    <ButtonNav ruta={'/contact'} texto={'Contacto/soporte'} className="btn-soporte" />
+                </div>
 
-  const [formData, setFormData] = useState({
-    operador: 'Juan Pérez', 
-    sede: 'Sede Central',
-    fechaHora: new Date().toLocaleString(),
-    categoria: '',
-    descripcion: '',
-    urgencia: 'Baja'
-  });
+                {/* CONTENEDORES DE ESTADO (BANNERS) */}
+                <div className="indicadores-container">
+                    <div className="banner-estado banner-verde">
+                        <label>Pedidos entregados hoy</label>
+                        <h2>24</h2>
+                    </div>
+                    <div className="banner-estado banner-naranja">
+                        <label>Pedidos pendientes</label>
+                        <h2>14</h2>
+                    </div>
+                    <div className="banner-estado banner-rojo">
+                        <label>Pedidos rechazados</label>
+                        <h2>2</h2>
+                    </div>
+                </div>
 
-  const [mensajeData, setMensajeData] = useState({ tipo: '', texto: '' });
+                {/* BOTÓN CENTRAL REGISTRAR */}
+                <div className="btn-registrar-container">
+                    <ButtonNav ruta={'/checklist'} texto={'Registrar'} className="btn-registrar" />
+                </div>
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+                {/* TABLA DE PRODUCTOS */}
+                <div className="columna-detalles">
+                    <table className="tabla-limpia">
+                        <thead>
+                            <tr>
+                                <th>Boleta(id)</th>
+                                <th>Producto Principal</th>
+                                <th>Cantidad</th>
+                                <th>Cliente</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {pedidos.map((pedido, index) => {
+                                // Asignar color de fondo de la fila según el estado del dashboard original
+                                let filaClase = "fila-verde";
+                                if (pedido.estado === "pendiente") filaClase = "fila-amarilla";
+                                if (pedido.estado === "rechazado") filaClase = "fila-roja";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+                                return (
+                                    <tr key={index} className={filaClase}>
+                                        <td><strong>{pedido.id}</strong></td>
+                                        <td>{pedido.producto}</td>
+                                        <td>{pedido.cantidad}</td>
+                                        <td>{pedido.cliente}</td>
+                                        {/* El botón ahora dice "DETALLES" de forma fija */}
+                                        <td>
+                                            <div className="celda-boton-detalle">
+                                                <ButtonNav 
+                                                    ruta={'/details'} 
+                                                    texto={'DETALLES'} 
+                                                    className={`btn-tabla-estado ${pedido.estado}`}
+                                                />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
 
-    if (formData.categoria === '' || formData.descripcion.trim() === '') {
-      setMensajeData({
-        tipo: 'error',
-        texto: 'Por favor, selecciona una categoría y describe el problema.'
-      });
-      return;
-    }
-
-    setMensajeData({
-      tipo: 'exito',
-      texto: 'Reporte enviado correctamente. El equipo lo revisará pronto.'
-    });
-
-    setFormData({
-      ...formData,
-      categoria: '',
-      descripcion: '',
-      urgencia: 'Baja'
-    });
-  };
-  const historialEstatico = [
-    { id: 1, fecha: 'Hoy 10:00', categoria: 'Red', estado: 'Resuelto' },
-    { id: 2, fecha: 'Ayer 15:30', categoria: 'Hardware', estado: 'En progreso' },
-    { id: 3, fecha: 'Lunes 09:15', categoria: 'Software', estado: 'Pendiente' },
-    { id: 4, fecha: 'Viernes 16:45', categoria: 'Red', estado: 'Resuelto' }
-  ];
-
-  return (
-    <main className="pagina-contacto">
-      {/* Botón de navegación implementado en la cabecera */}
-      <div className="cabecera-contacto">
-        <ButtonNav 
-          ruta="/dashboard" 
-          texto="← Volver al Dashboard" 
-          claseExtra="btn-volver"
-        />
-      </div>
-
-      <section className="soporte-urgente">
-        <h2>Urgente (hay un cliente esperando)</h2>
-        <div className="botones-urgencia">
-          <button type="button" className="btn-llamar">Llamar Soporte</button>
-          <button type="button" className="btn-chat">Chat Soporte</button>
-        </div>
-      </section>
-
-      <section className="formulario-soporte">
-        <Mensaje tipo={mensajeData.tipo} texto={mensajeData.texto} />
-
-        <form onSubmit={handleSubmit} className="grid-formulario">
-          
-          <fieldset className="columna-datos">
-            <legend>Datos del operador</legend>
-            <div className="campo">
-              <label htmlFor="operador">Operador</label>
-              <input type="text" id="operador" name="operador" value={formData.operador} readOnly disabled />
             </div>
-            <div className="campo">
-              <label htmlFor="sede">Sede</label>
-              <input type="text" id="sede" name="sede" value={formData.sede} readOnly disabled />
-            </div>
-            <div className="campo">
-              <label htmlFor="fechaHora">Fecha y hora</label>
-              <input type="text" id="fechaHora" name="fechaHora" value={formData.fechaHora} readOnly disabled />
-            </div>
-          </fieldset>
+        </section>
+    );
+}
 
-          <fieldset className="columna-detalles">
-            <legend>Detalles del problema</legend>
-            <div className="campo">
-              <label htmlFor="categoria">Categoría del problema</label>
-              <select id="categoria" name="categoria" value={formData.categoria} onChange={handleChange}>
-                <option value="">Seleccione una categoría...</option>
-                <option value="hardware">Falla de Hardware</option>
-                <option value="software">Falla de Software</option>
-                <option value="red">Problemas de Red</option>
-              </select>
-            </div>
-            <div className="campo">
-              <label htmlFor="descripcion">Descripción del problema</label>
-              <textarea 
-                id="descripcion" 
-                name="descripcion" 
-                rows="3" 
-                value={formData.descripcion} 
-                onChange={handleChange}
-                placeholder="Describa el problema aquí..."
-              ></textarea>
-            </div>
-          </fieldset>
-
-          <fieldset className="columna-urgencia">
-            <legend>Nivel de urgencia</legend>
-            <div className="opciones-urgencia">
-              <label className={`radio-btn ${formData.urgencia === 'Baja' ? 'activo' : ''}`}>
-                <input type="radio" name="urgencia" value="Baja" checked={formData.urgencia === 'Baja'} onChange={handleChange} />
-                Consulta (Baja)
-              </label>
-              <label className={`radio-btn ${formData.urgencia === 'Media' ? 'activo' : ''}`}>
-                <input type="radio" name="urgencia" value="Media" checked={formData.urgencia === 'Media'} onChange={handleChange} />
-                Parcial (Media)
-              </label>
-              <label className={`radio-btn ${formData.urgencia === 'Alta' ? 'activo' : ''}`}>
-                <input type="radio" name="urgencia" value="Alta" checked={formData.urgencia === 'Alta'} onChange={handleChange} />
-                Urgente (Alta)
-              </label>
-            </div>
-          </fieldset>
-
-          <div className="footer-formulario">
-            <article className="historial-reportes">
-              <h3>Historial reciente de la sede</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>Categoría</th>
-                    <th>Estado</th>
-                  </tr>
-                </thead>
-                {/* ========================================== */}
-                {/* PASO B: Renderizado dinámico de la tabla */}
-                {/* ========================================== */}
-                <tbody>
-                  {historialEstatico.map((reporte) => (
-                    <tr key={reporte.id}>
-                      <td>{reporte.fecha}</td>
-                      <td>{reporte.categoria}</td>
-                      <td>{reporte.estado}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </article>
-
-            <button type="submit" className="btn-enviar">Enviar Reporte</button>
-          </div>
-        </form>
-      </section>
-    </main>
-  );
-};
-
-export default Contact;
+export default Dashboard;
